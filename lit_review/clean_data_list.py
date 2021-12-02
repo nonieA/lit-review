@@ -61,7 +61,7 @@ if __name__=='__main__':
     papers.to_csv('data/processed/litreview_short.csv',index=False)
 
     lit_df = pd.read_csv('data/raw/lit_review_data.csv')
-    drop_reasons = lit_df['Discard'].value_counts().reset_index()
+    drop_reasons = lit_df.drop_duplicates('DOI')['Discard'].value_counts().reset_index()
     drop_reasons.to_csv('data/processed/excluded_counts.csv')
 
     lit_short = lit_df[lit_df['Discard']=='Keep']
@@ -69,7 +69,7 @@ if __name__=='__main__':
        'Disease', 'Primary or Secondary Care',
        'Uses additional data', 'Country', 'Time Type', 'Variables included',
        'N varaibles', 'N', 'Missing data', 'Feature Selection',
-       'Dimentionality Reduction', 'Clustering algorithm ', 'Deciding K 1',
+       'Data Transformation', 'Clustering algorithm ', 'Deciding K 1',
        'Deciding K 2', 'Deciding K 3', 'Deciding K 4', 'K',
        'Charactersing clusters', 'Internal evaluation metric 1',
        'Internal evaluation metric 2', 'Internal evaluation metric 3',
